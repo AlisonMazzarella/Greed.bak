@@ -1,5 +1,5 @@
-from color import Color
-from point import Point
+from shared.color import Color
+from shared.point import Point
 
 
 class Actor:
