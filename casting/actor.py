@@ -1,86 +1,117 @@
 from shared.color import Color
 from shared.point import Point
-import pyray
+
 
 class Actor:
-    '''A moveable character that interacts in the game.
-    The responsability of the Actor is to keep track of its appearance, position and velocity in a 2-dimensional space.'''
+    """A visible, moveable thing that participates in the game. 
     
+    The responsibility of Actor is to keep track of its appearance, position and velocity in 2d 
+    space.
+
+    Attributes:
+        _text (string): The text to display
+        _font_size (int): The font size to use.
+        _color (Color): The color of the text.
+        _position (Point): The screen coordinates.
+        _velocity (Point): The speed and direction.
+    """
+
     def __init__(self):
-        '''Makes a new Actor.'''
+        """Constructs a new Actor."""
         self._text = ""
         self._font_size = 15
-        self.color = Color(255,255,255)
+        self._color = Color(255, 255, 255)
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
-        self._score = 0
-        
-        
+
     def get_color(self):
-        '''Gets the actor's color as a tuple of three ints (r, g, b).'''
+        """Gets the actor's color as a tuple of three ints (r, g, b).
+        
+        Returns:
+            Color: The actor's text color.
+        """
         return self._color
-    
+
+    def get_font_size(self):
+        """Gets the actor's font size.
+        
+        Returns:
+            Point: The actor's font size.
+        """
+        return self._font_size
+
     def get_position(self):
-        '''Gets the actors position in 2D'''
+        """Gets the actor's position in 2d space.
+        
+        Returns:
+            Point: The actor's position in 2d space.
+        """
         return self._position
     
-    def get_font_size(self):
-        '''Gets the actors font size'''
-        return self._font_size
-    
     def get_text(self):
-        '''Gets the actors textual representation'''
+        """Gets the actor's textual representation.
+        
+        Returns:
+            string: The actor's textual representation.
+        """
         return self._text
-    
+
     def get_velocity(self):
-        '''Gets the actors speed and direction'''
+        """Gets the actor's speed and direction.
+        
+        Returns:
+            Point: The actor's speed and direction.
+        """
         return self._velocity
     
     def move_next(self, max_x, max_y):
-        '''Moves the actor to its next position according to its velocity. Will wrap the position 
+        """Moves the actor to its next position according to its velocity. Will wrap the position 
         from one side of the screen to the other when it reaches the given maximum x and y values.
-        '''
+        
+        Args:
+            max_x (int): The maximum x value.
+            max_y (int): The maximum y value.
+        """
         x = (self._position.get_x() + self._velocity.get_x()) % max_x
         y = (self._position.get_y() + self._velocity.get_y()) % max_y
         self._position = Point(x, y)
-    
+
     def set_color(self, color):
-        '''Updates the color to the given one.'''
-        self._color = color
-        
-    def set_position(self, position):
-        '''Updates the position to the given one.'''
-        self._position = position
-        
-    def set_font_size(self, font_size):
-        '''Updates the font size to the given one.'''
-        self._font_size = font_size
-        
-    def set_text(self, text):
-        '''Updates the text to the given value.'''
-        self._text = text
-        
-    def set_velocity(self, velocity):
-        '''Updates the velocity to the given one.'''
-        self._velocity = velocity
-        
-    def get_score(self):
-        '''Gets the artifacts score and returns it.'''
-        if self._text == "score":
-            return self._score
-        elif self._text == "*":
-            return 1
-        else:
-            return -1    
-        
-    def set_score(self, score):
-        """Updates the message to the given one.
+        """Updates the color to the given one.
         
         Args:
-            message (string): The given message.
+            color (Color): The given color.
         """
-        self._score = score
+        self._color = color
+
+    def set_position(self, position):
+        """Updates the position to the given one.
         
-    def draw_score(self):
-        score_text = "Score: {}".format(self._score)
-        pyray.draw_text(score_text, 15, 15, 20, pyray.WHITE)
+        Args:
+            position (Point): The given position.
+        """
+        self._position = position
+    
+    def set_font_size(self, font_size):
+        """Updates the font size to the given one.
+        
+        Args:
+            font_size (int): The given font size.
+        """
+        self._font_size = font_size
+    
+    def set_text(self, text):
+        """Updates the text to the given value.
+        
+        Args:
+            text (string): The given value.
+        """
+        self._text = text
+
+    def set_velocity(self, velocity):
+        """Updates the velocity to the given one.
+        
+        Args:
+            velocity (Point): The given velocity.
+        """
+        self._velocity = velocity
