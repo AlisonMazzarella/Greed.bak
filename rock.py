@@ -1,4 +1,4 @@
-from casting.actor import Actor
+from actor import Actor
 import random 
 
 class Rock(Actor):
