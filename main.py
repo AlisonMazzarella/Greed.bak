@@ -2,16 +2,16 @@ import os
 import random
 
 from casting.actor import Actor
-from casting.artifact import Artifact
+# from casting.artifact import Artifact
 from casting.cast import Cast
 
-from directing.director import Director
+from director import Director
 
-from services.keyboard_service import KeyboardService
-from game.services.video_service import VideoService
+from services.keyboard_services import KeyboardService
+from services.video_service import VideoService
 
-from game.shared.color import Color
-from game.shared.point import Point
+from shared.color import Color
+from shared.point import Point
 
 FRAME_RATE = 12
 MAX_X = 900
@@ -69,13 +69,13 @@ def main():
         b = random.randint(0, 255)
         color = Color(r, g, b)
         
-        artifact = Artifact()
-        artifact.set_text(text)
-        artifact.set_font_size(FONT_SIZE)
-        artifact.set_color(color)
-        artifact.set_position(position)
-        artifact.set_message(message)
-        cast.add_actor("artifacts", artifact)
+        # artifact = Artifact()
+        # artifact.set_text(text)
+        # artifact.set_font_size(FONT_SIZE)
+        # artifact.set_color(color)
+        # artifact.set_position(position)
+        # artifact.set_message(message)
+        # cast.add_actor("artifacts", artifact)
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
