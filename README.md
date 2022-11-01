@@ -1,5 +1,5 @@
-# Greed.bak
-Greed Game Backup 
+# Greed
+Greed Game 
 # **Overview:**
 
 - Greed is a game in which the player seeks to gather as many falling gems as possible.
