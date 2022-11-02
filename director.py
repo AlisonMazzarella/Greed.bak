@@ -1,3 +1,9 @@
+from casting.gem import Gem
+from casting.rock import Rock
+
+gem = Gem()
+rock = Rock()
+
 class Director:
     """A person who directs the game. 
     

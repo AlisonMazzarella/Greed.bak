@@ -74,49 +74,43 @@ def main():
     # with open(DATA_PATH) as file:
     #     data = file.read()
 
-
-    for n in range(DEFAULT_GEMS):
-        # text = chr(random.randint(33, 126))
-        # message = messages[n]
+    # create the gems
+    for gem in range(DEFAULT_GEMS):
+        gem = Gem()
+        gem.display()
+        # gem.get_score()
+        # gem.set_score()
+        gem.collide()
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
 
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        color = Color(r, g, b)
         
-        gem = Gem()
-        # gem.set_text(text)
+        #gem.set_text(text)
         gem.set_font_size(FONT_SIZE)
-        gem.set_color(color)
         gem.set_position(position)
         # gem.set_message(message)
         cast.add_actor("gems", gem)
 
-    for n in range(DEFAULT_ROCKS):
-        # text = chr(random.randint(33, 126))
-        # message = messages[n]
+    for rock in range(DEFAULT_ROCKS):
+        rock = Rock()
+        rock.display()
+        # rock.get_score()
+        # rock.set_score()
+        rock.collide()
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
 
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        color = Color(r, g, b)
         
-        rock = Rock()
-        # rock.set_text(text)
+        #gem.set_text(text)
         rock.set_font_size(FONT_SIZE)
-        rock.set_color(color)
         rock.set_position(position)
-        # rock.set_message(message)
+        # gem.set_message(message)
         cast.add_actor("rocks", rock)
 
     
