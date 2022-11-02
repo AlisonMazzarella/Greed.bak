@@ -42,25 +42,28 @@ class Director:
         player.set_velocity(velocity)        
 
     def _do_updates(self, cast):
-        """Updates the player's position and resolves any collisions with artifacts.
+        """Updates the player's position and resolves any collisions with gems or rocks.
         
         Args:
             cast (Cast): The cast of actors.
         """
         banner = cast.get_first_actor("banners")
         player = cast.get_first_actor("players")
-        gem = cast.get_actors("gem")
-        rock = cast.get_actors("rock")
+        gems = cast.get_actors("gem")
+        rocks = cast.get_actors("rock")
 
         banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         player.move_next(max_x, max_y)
         
-        # for artifact in artifacts:
-        #     if player.get_position().equals(artifact.get_position()):
-        #         message = artifact.get_message()
-        #         banner.set_text(message)    
+        for rock in rocks:
+            if player.get_position().equals(rock.get_position()):
+                rock.collide()  
+
+        for gem in gems:
+            if player.get_position().equals(gem.get_position()):
+                gem.collide()
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.

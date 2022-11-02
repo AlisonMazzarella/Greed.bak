@@ -2,7 +2,8 @@ import os
 import random
 
 from casting.actor import Actor
-# from casting.artifact import Artifact
+from casting.gem import Gem
+from casting.rock import Rock
 from casting.cast import Cast
 
 from director import Director
@@ -23,7 +24,8 @@ ROWS = 40
 CAPTION = "Greed Game"
 # DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
-DEFAULT_ARTIFACTS = 40
+DEFAULT_GEMS = 40
+DEFAULT_ROCKS = 40
 
 def main():
     
@@ -40,7 +42,7 @@ def main():
     
     # create the player
     x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    y = int(MAX_Y - CELL_SIZE)
     position = Point(x, y)
 
     player = Actor()
@@ -49,13 +51,31 @@ def main():
     player.set_color(WHITE)
     player.set_position(position)
     cast.add_actor("players", player)
+
+    #create the rocks
+    # x = int(MAX_X / 2)
+    # y = int(MAX_Y - CELL_SIZE)
+    # position = Point(x, y)
+
+    # rocks = Rock()
+
+    #create the gems
+    # x = int(MAX_X / 2)
+    # y = int(MAX_Y - CELL_SIZE)
+    # position = Point(x, y)
+    # gems = Gem()
     
-    # create the artifacts
+    # # create the rocks
     # with open(DATA_PATH) as file:
     #     data = file.read()
-    #     messages = data.splitlines()
+    
 
-    for n in range(DEFAULT_ARTIFACTS):
+    # # create the gems
+    # with open(DATA_PATH) as file:
+    #     data = file.read()
+
+
+    for n in range(DEFAULT_GEMS):
         # text = chr(random.randint(33, 126))
         # message = messages[n]
 
@@ -69,13 +89,36 @@ def main():
         b = random.randint(0, 255)
         color = Color(r, g, b)
         
-        # artifact = Artifact()
-        # artifact.set_text(text)
-        # artifact.set_font_size(FONT_SIZE)
-        # artifact.set_color(color)
-        # artifact.set_position(position)
-        # artifact.set_message(message)
-        # cast.add_actor("artifacts", artifact)
+        gem = Gem()
+        # gem.set_text(text)
+        gem.set_font_size(FONT_SIZE)
+        gem.set_color(color)
+        gem.set_position(position)
+        # gem.set_message(message)
+        cast.add_actor("gems", gem)
+
+    for n in range(DEFAULT_ROCKS):
+        # text = chr(random.randint(33, 126))
+        # message = messages[n]
+
+        x = random.randint(1, COLS - 1)
+        y = random.randint(1, ROWS - 1)
+        position = Point(x, y)
+        position = position.scale(CELL_SIZE)
+
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        color = Color(r, g, b)
+        
+        rock = Rock()
+        # rock.set_text(text)
+        rock.set_font_size(FONT_SIZE)
+        rock.set_color(color)
+        rock.set_position(position)
+        # rock.set_message(message)
+        cast.add_actor("rocks", rock)
+
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
