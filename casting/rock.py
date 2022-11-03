@@ -36,8 +36,5 @@ class Rock(Actor):
         if self._is_alive == False:
             if list[0]:
                 self._score -= 1
-        elif self._is_alive == False:
-            if list[1]:
-                self._score += 1
         else: 
             pass
