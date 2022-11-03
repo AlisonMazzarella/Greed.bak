@@ -1,4 +1,5 @@
 from casting.actor import Actor
+from shared.point import Point
 import random 
 
 class Rock(Actor):
@@ -10,6 +11,9 @@ class Rock(Actor):
         super().__init__()
         self._is_alive = True
         self._score = 0
+        self.position = Point(random.randint(2, 500), 0)
+        self.points = 1
+        self.move = 0
         
     def display(self):
         '''Sets a rock to an O.'''
@@ -31,8 +35,20 @@ class Rock(Actor):
             message (string): The given message.
         """
         self._score = score
+        
+    def set_movement(self):
+        """Sets movement of gem across screen."""
+        
+        if self.move < 20: 
+            self.move += 1
+            
+        else: 
+            self.position.y += 1
+            self.move = 0
     
     def collide(self):
+        """Controls points based on collision."""
+        
         if self._is_alive == False:
             if list[0]:
                 self._score -= 1
